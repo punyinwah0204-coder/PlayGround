@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#101c28" />
+  <title>Harborlight — A little town, yours to shape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="world" aria-label="Harborlight 3D world"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Harborlight home"><span class="brand-mark">H</span><span>HARBORLIGHT<span class="brand-sub">A town in the making</span></span></a>
+      <div class="top-center"><span class="weather-icon">☀</span><span>GOLDEN HOUR</span><i></i><span id="clock">4:32 PM</span></div>
+      <div class="top-right"><span class="online-dot"></span><span>WORLD 01</span><button class="icon-btn" id="sound-btn" title="Toggle sound">♫</button><button class="icon-btn" id="help-btn" title="Controls">?</button></div>
+    </header>
+    <section class="intro-card" id="intro-card">
+      <div class="eyebrow"><span class="eyebrow-line"></span> WELCOME TO THE COAST</div>
+      <h1>A little town,<br><em>yours to shape.</em></h1>
+      <p>Meet the locals. Find your footing.<br>Make Harborlight feel like home.</p>
+      <button class="primary-btn" id="start-btn">STEP INTO TOWN <span>↗</span></button>
+      <div class="intro-foot"><span>✦ &nbsp;A cozy open-world adventure</span><span>01 / 01</span></div>
+    </section>
+    <section class="hud hidden" id="hud">
+      <div class="quest-card"><div class="quest-top"><span class="quest-icon">✦</span><span class="quest-label">TOWN JOURNAL</span><span class="quest-count" id="quest-count">0 / 3</span></div><div class="quest-title" id="quest-title">A place to begin</div><div class="quest-copy" id="quest-copy">The sun is out and the town is waking up. Say hello to someone nearby.</div><div class="quest-progress"><span id="quest-progress"></span></div></div>
+      <div class="stats-card"><div class="stat"><span class="stat-icon coin">◉</span><div><b id="coins">120</b><small>COINS</small></div></div><div class="stat-divider"></div><div class="stat"><span class="stat-icon wood">▰</span><div><b id="wood">8</b><small>TIMBER</small></div></div></div>
+      <div class="location-pill"><span class="location-pin">⌖</span><span><b id="location-name">THE COMMON</b><small>HARBORLIGHT, COAST</small></span></div>
+      <div id="interaction-hint" class="interaction-hint hidden"><kbd>E</kbd><span>Talk to <b id="hint-name">someone</b></span></div>
+      <div class="bottom-controls"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> MOVE</span><span><kbd>SHIFT</kbd> RUN</span><span><kbd>DRAG</kbd> LOOK</span><span><kbd>B</kbd> BUILD</span><span><kbd>E</kbd> TALK</span></div>
+    </section>
+    <section class="build-panel hidden" id="build-panel">
+      <div class="panel-head"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Build something</h2></div><button class="close-btn" id="build-close" aria-label="Close build menu">×</button></div>
+      <p class="panel-copy">Choose a piece, then place it on open ground nearby.</p>
+      <div class="build-list" id="build-list"></div>
+      <div class="build-tip"><span>✧</span> You can move or cancel before placing.</div>
+    </section>
+    <section class="dialogue hidden" id="dialogue">
+      <div class="dialogue-person"><div class="avatar" id="npc-avatar">M</div><div><div class="dialogue-role" id="npc-role">TOWN RESIDENT</div><h2 id="npc-name">Mara</h2></div><button class="close-btn" id="dialogue-close" aria-label="Close conversation">×</button></div>
+      <div class="dialogue-rule"></div><p class="dialogue-text" id="dialogue-text"></p><div class="dialogue-options" id="dialogue-options"></div>
+    </section>
+    <div class="toast hidden" id="toast"><span>✦</span><span id="toast-text">Nice!</span></div>
+    <div class="screen-cover hidden" id="help-modal"><div class="help-card"><button class="close-btn" id="help-close">×</button><div class="eyebrow">YOUR FIRST DAY</div><h2>Take it at your own pace.</h2><p>Harborlight is yours to explore. Meet neighbors to learn about town projects, gather timber from the woodpile, and build little things that make the place brighter.</p><div class="help-grid"><span><kbd>WASD</kbd> Walk around</span><span><kbd>SHIFT</kbd> Pick up the pace</span><span><kbd>E</kbd> Chat with a neighbor</span><span><kbd>B</kbd> Open the build menu</span><span><kbd>DRAG</kbd> Look around</span><span><kbd>ESC</kbd> Close a panel</span></div><button class="primary-btn" id="got-it">GOT IT <span>↗</span></button></div></div>
+    <div class="mobile-controls hidden" id="mobile-controls"><div class="dpad"><button data-move="forward">▲</button><div><button data-move="left">◀</button><button data-move="back">▼</button><button data-move="right">▶</button></div></div><div class="mobile-actions"><button id="mobile-talk">TALK</button><button id="mobile-build">BUILD</button></div></div>
+    <div class="loading" id="loading"><div class="loading-logo">H</div><span>SETTING THE SCENE...</span><div class="load-track"><i></i></div></div>
+  </main>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
